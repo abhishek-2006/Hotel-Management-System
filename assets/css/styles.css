@@ -1,0 +1,874 @@
+/*
+ * HotelBooking System - Refined Guest Styles (Final External CSS)
+ * File: style.css
+ * Focus: Improved visual hierarchy, spacing, and modern look.
+ */
+
+/* 1. Base Setup & Variables */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    /* Color Palette */
+    --color-brand: #0077B6;      /* Professional Blue - Primary brand color */
+    --color-action: #F4A261;     /* Soft Orange/Terracotta - Key action/booking button */
+    --color-bg-primary: #F0F4F8; /* Light blue-gray for soft background */
+    --color-bg-secondary: #ffffff;/* Pure White - Card/Module background */
+    --color-text-dark: #264653;  /* Deep Teal - Primary text (Better contrast than pure black) */
+    --color-text-light: #778899; /* Slate Gray - Secondary text/placeholder */
+    --color-border-light: #e6e6e6;/* Very Light Border */
+    
+    --shadow-pro: 0 15px 50px rgba(0, 0, 0, 0.15); /* Soft, professional shadow */
+    --shadow-btn: 0 5px 15px rgba(244, 162, 97, 0.4);
+    
+    --gradient-primary: linear-gradient(135deg, #1f4280 0%, #0077B6 100%); /* Deep Blue Gradient */
+    --gradient-button: linear-gradient(90deg, #F4A261 0%, #E9C46A 100%); /* Warm Action Gradient */
+    --shadow-deep: 0 10px 40px rgba(0, 0, 0, 0.2);
+    --shadow-light: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    /* Spacing & Sizing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+    
+    --border-radius-sm: 4px;
+    --border-radius-md: 10px; /* Slightly rounder for softness */
+    
+    --transition-fast: 0.25s ease-out;
+}
+
+/* Global Reset & Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Headings: Use Playfair Display for key headings for elegance */
+h1, h2, h3 {
+    color: var(--color-text-dark);
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; }
+h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
+h3 { font-size: 1.3rem; font-weight: 700; }
+
+p {
+    margin-bottom: var(--spacing-sm);
+    font-weight: 400;
+}
+
+/* 2. Main Layout & Components */
+main {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1300px; 
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+section {
+    padding: var(--spacing-lg) 0;
+}
+
+.container {
+    padding: 0 var(--spacing-md);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.7rem;
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--color-brand);
+    color: var(--color-bg-secondary);
+}
+
+.btn-action {
+    background-color: var(--color-action);
+    color: var(--color-bg-secondary);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-brand);
+    color: var(--color-brand);
+    box-shadow: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Forms (Inputs) */
+.form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-dark);
+    transition: border-color var(--transition-fast);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);
+}
+
+/* Cards */
+.card {
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    border-bottom: 3px solid var(--color-brand); /* Subtle accent line */
+}
+
+/* Grid Layouts */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.text-center { text-align: center; }
+.text-light { color: var(--color-text-light); }
+.sr-only { 
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* --- Header & Navigation Styles (as previously defined) --- */
+
+.main-header {
+    background-color: var(--color-bg-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0.8rem var(--spacing-sm);
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    text-decoration: none;
+}
+
+.logo-accent {
+    color: var(--color-brand);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.nav-links li a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color var(--transition-fast);
+}
+
+.nav-links li a:hover {
+    color: var(--color-brand);
+}
+
+.nav-links li.active a {
+    color: var(--color-brand);
+    border-bottom: 2px solid var(--color-brand);
+    padding-bottom: 0.3rem;
+}
+
+.auth-link a.btn-link {
+    font-weight: 700;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: none;
+    transform: none;
+    text-transform: none;
+}
+
+.auth-link a.btn-primary {
+    background-color: var(--color-action);
+    color: white;
+}
+
+.auth-link a.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-dark);
+}
+
+/* --- Mobile Navigation --- */
+@media (max-width: 950px) {
+    .menu-toggle { display: block; }
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        background-color: var(--color-bg-secondary);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+        padding: var(--spacing-unit) 0;
+        z-index: 999;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--color-border-light);
+    }
+    .nav-links li a { padding: 1rem 0; }
+    .nav-links.active { display: flex; }
+}
+
+/* --- Homepage Specific Styles (Moved from Internal CSS) --- */
+.hero {
+    position: relative;
+    height: 65vh; 
+    background: url('../images/hotel-lobby-placeholder.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-bottom: calc(var(--spacing-md) * 2); 
+    padding: var(--spacing-sm);
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)); /* Darker overlay */
+    z-index: 1;
+}
+.hero-content {
+    z-index: 2;
+    max-width: 900px;
+    padding: var(--spacing-sm);
+}
+.hero h1 {
+    color: white; 
+    font-size: 3.5rem; /* Larger heading */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 0.5rem;
+}
+.hero p {
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+    font-weight: 300;
+}
+
+/* Search Widget Styling */
+.search-widget {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    width: 100%;
+    border-top: 5px solid var(--color-action); /* Highlight the booking form */
+}
+
+.search-widget .form-group {
+    flex: 1;
+    min-width: 120px;
+    margin-bottom: 0; 
+}
+
+.search-widget .search-btn {
+    flex-shrink: 0;
+    align-self: flex-end;
+    min-width: 140px;
+    height: 48px; /* Match input height */
+    padding: 0.6rem 1.7rem;
+}
+
+/* Features Section */
+.features-section h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem; 
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    box-shadow: none;
+    text-transform: none;
+}
+.btn-small:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Footer Styles (as previously defined) --- */
+
+.main-footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    margin-top: var(--spacing-xl); 
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.footer-column h3 {
+    color: white; 
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.footer-links ul { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 0.5rem; }
+
+.main-footer a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.main-footer a:hover {
+    color: var(--color-brand);
+}
+
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.7rem;
+}
+
+.footer-contact i, .social-links i {
+    margin-right: 0.7rem;
+    color: var(--color-action); /* Use action color for icons */
+    font-size: 1.1rem;
+}
+
+.social-links { margin-top: var(--spacing-sm); }
+
+.social-links a {
+    display: inline-block;
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    transition: background-color var(--transition-fast);
+}
+
+.social-links a:hover {
+    background-color: var(--color-brand);
+    color: white;
+    border-color: var(--color-brand);
+}
+
+.footer-bottom {
+    border-top: 1px solid #34495e;
+    text-align: center;
+    padding: var(--spacing-sm) 0;
+    margin-top: var(--spacing-md);
+    color: #bdc3c7;
+}
+
+/* --- Responsive Layout for Search Widget --- */
+@media (max-width: 850px) {
+    .search-widget {
+        flex-wrap: wrap;
+    }
+    .search-widget .form-group,
+    .search-widget .search-btn {
+        width: 100%;
+        flex: none;
+    }
+}
+
+/* --- UI Enhancements for rooms.php (Append to style.css) --- */
+
+.rooms-page-container {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+.page-title {
+    color: var(--color-brand); /* Title color */
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Room Grid Layout */
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid of cards */
+    gap: var(--spacing-lg);
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Room Card Styling */
+.room-card {
+    padding: 0; /* Card padding is handled internally */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-bottom: 5px solid var(--color-brand); /* Accent border for available rooms */
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Booked Card (Visual distinction) */
+.room-card-booked {
+    opacity: 0.8;
+    filter: grayscale(20%);
+    border-bottom-color: var(--color-text-light); /* Different color for booked */
+}
+
+/* Image and Status Badge */
+.room-image-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.room-card:hover .room-image {
+    transform: scale(1.05);
+}
+
+.room-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.room-status-available {
+    background-color: #28a745; /* Green */
+}
+
+.room-status-booked {
+    background-color: #dc3545; /* Red */
+}
+
+/* Room Details Content */
+.room-details {
+    padding: var(--spacing-md);
+}
+
+.room-details h3 {
+    margin-top: 0;
+    color: var(--color-text-dark);
+}
+
+.room-specs {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-light);
+}
+
+.room-specs li {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+}
+
+.room-specs i {
+    color: var(--color-action);
+    margin-right: var(--spacing-xs);
+}
+
+/* Price Display */
+.room-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    margin-top: var(--spacing-sm);
+    border-top: 1px dashed var(--color-border-light);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.room-price strong {
+    color: var(--color-text-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Button */
+.btn-full-width {
+    width: 100%;
+    margin-top: var(--spacing-sm);
+}
+
+.btn-full-width[disabled] {
+    background-color: var(--color-text-light);
+    pointer-events: none;
+    opacity: 0.6;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Empty State Message */
+.empty-state {
+    padding: var(--spacing-lg);
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Overriding Auth Styles for Designer Look --- */
+
+/* Background Enhancement (Applies to .auth-page) */
+.auth-page {
+    background-color: var(--color-bg-primary); 
+    background-size: 50px 50px;
+    padding: var(--spacing-xl);
+    justify-items: center;
+}
+
+/* Auth Container (The main form box) */
+.auth-container {
+    padding: var(--spacing-xl) var(--spacing-lg); /* Increased vertical padding for premium feel */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-pro); /* Deeper shadow */
+    max-width: 430px; /* Slightly wider container */
+    border-left: 5px solid var(--color-brand); /* Highlight left edge */
+}
+
+/* Header Styling */
+.auth-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; /* Larger title */
+    color: var(--color-brand);
+    margin-bottom: var(--spacing-xs);
+}
+.auth-header p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 300;
+}
+
+/* Input Fields */
+.form-group label {
+    font-weight: 600;
+}
+
+.form-control-icon input {
+    /* Refined border and smooth transition */
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+}
+
+.form-control-icon i {
+    color: var(--color-brand); /* Icons match brand color */
+}
+
+.form-control-icon input:focus {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2); /* Soft blue glow */
+}
+
+/* Action Button (Gradient) */
+.btn-auth-submit {
+    /* Applying the strong gradient */
+    background: var(--color-action); 
+    border: none;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 8px 20px var(--shadow-btn); /* Shadow matching the button color */
+    border-radius: var(--border-radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-auth-submit:hover {
+    transform: translateY(-3px); /* Deeper lift on hover */
+    opacity: 0.95;
+    box-shadow: 0 12px 25px rgba(244, 162, 97, 0.6);
+}
+
+.auth-footer {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+}
+
+/* Links */
+.auth-footer a {
+    color: var(--color-brand); /* Use warm color for links */
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.auth-footer p {
+    color: var(--color-text-light);
+}
+
+/* --- Styles for about.php --- */
+
+.about-page-container {
+    padding-top: var(--spacing-lg);
+}
+
+.about-hero {
+    padding: var(--spacing-xl) 0;
+    border-bottom: 2px solid var(--color-border-subtle);
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    color: var(--color-text-dark);
+}
+
+.lead-text {
+    font-size: 1.3rem;
+    color: var(--color-text-light);
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* Story and Values Layout */
+.story-section h2, .values-section h2 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-brand);
+    font-weight: 700;
+}
+
+.story-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.story-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.image-box {
+    /* Placeholder for image styling */
+    min-height: 350px;
+    background-color: var(--color-bg-page);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-pro);
+}
+
+.values-grid {
+    /* Reusing grid-3 from main CSS */
+    margin-top: var(--spacing-md);
+}
+
+.value-card {
+    text-align: center;
+    border-top: 5px solid var(--color-action); /* Highlight */
+}
+
+.value-card i {
+    font-size: 2.5rem;
+    color: var(--color-action);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .story-content {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+}
+
+/* --- Styles for contact.php --- */
+
+.contact-page-container {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+.contact-header h1 {
+    font-size: 3rem;
+    color: var(--color-brand);
+}
+
+.grid-main {
+    /* Layout: 60% Form, 40% Info/Map */
+    display: grid;
+    grid-template-columns: 3fr 2fr; 
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-md);
+}
+
+/* Form Area */
+.contact-form-area {
+    /* Inherits card styles */
+    height: fit-content;
+    box-shadow: var(--shadow-deep);
+}
+
+.form-title {
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Info Area */
+.contact-info-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.info-card {
+    border-left: 3px solid var(--color-action);
+    padding: var(--spacing-md);
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-detail i {
+    font-size: 1.5rem;
+    color: var(--color-brand);
+    margin-right: var(--spacing-sm);
+    min-width: 30px;
+    text-align: center;
+}
+
+.contact-detail strong {
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+/* Map Placeholder */
+.map-placeholder {
+    height: 300px;
+    background-color: var(--color-bg-page);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-light);
+}
+
+/* Responsive adjustment */
+@media (max-width: 992px) {
+    .grid-main {
+        grid-template-columns: 1fr; /* Stack columns vertically on tablets/mobiles */
+    }
+}

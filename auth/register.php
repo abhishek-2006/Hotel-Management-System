@@ -1,6 +1,8 @@
 <?php 
+$PROJECT_ROOT = '/Hotel%20Management%20system';
 include('../includes/header.php'); 
 include('../includes/config.php'); 
+error_reporting(E_ALL);
 
 if (isset($_SESSION['user_id'])) {
     header('Location: ../user/dashboard.php');
@@ -28,7 +30,7 @@ if (isset($_SESSION['error_message'])) {
             </div>
         <?php endif; ?>
 
-        <form action="../bookings/auth_process.php" method="POST">
+        <form action="<?= $PROJECT_ROOT ?>/bookings/auth_process.php" method="POST">
             <input type="hidden" name="action" value="register">
             
             <div class="form-group form-control-icon">

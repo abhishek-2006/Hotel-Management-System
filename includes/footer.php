@@ -1,5 +1,5 @@
 </main>
-<?php $project_root = '/Hotel%20Booking%20system'; ?>
+<?php $project_root = '/Hotel%20Management%20system'; ?>
     <footer class="main-footer">
         <div class="footer-grid">
             
@@ -11,20 +11,20 @@
             <div class="footer-column footer-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="../index.php">Home</a></li>
-                    <li><a href="../about.php">About Us</a></li>
-                    <li><a href="../contact.php">Contact Us</a></li>
-                    <li><a href="../auth/login.php">Staff Login</a></li>
+                    <li><a href="<?= $project_root ?>/index.php">Home</a></li>
+                    <li><a href="<?= $project_root ?>/about.php">About Us</a></li>
+                    <li><a href="<?= $project_root ?>/contact.php">Contact Us</a></li>
+                    <li><a href="<?= $project_root ?>/auth/login.php">Staff Login</a></li>
                 </ul>
             </div>
 
             <div class="footer-column footer-links">
                 <h3>Book Now</h3>
                 <ul>
-                    <li><a href="../rooms.php">View Rooms</a></li>
-                    <li><a href="../user/book_room.php">Book a Room</a></li>
-                    <li><a href="../user/book_table.php">Reserve a Table</a></li>
-                    <li><a href="../user/dashboard.php">My Dashboard</a></li>
+                    <li><a href="<?= $project_root ?>/rooms.php">View Rooms</a></li>
+                    <li><a href="<?= $project_root ?>/user/book_room.php">Book a Room</a></li>
+                    <li><a href="<?= $project_root ?>/user/book_table.php">Reserve a Table</a></li>
+                    <li><a href="<?= $project_root ?>/user/dashboard.php">My Dashboard</a></li>
                 </ul>
             </div>
 

@@ -1,11 +1,11 @@
 <?php 
 // Corrected paths for includes using the project root variable
-$PROJECT_ROOT = '/Hotel%20Booking%20system'; 
+$PROJECT_ROOT = '/Hotel%20Management%20system';
 include('../includes/header.php'); 
 
 // Check if user is already logged in, redirect to dashboard
 if (isset($_SESSION['user_id'])) {
-    header('Location: ' . $PROJECT_ROOT . '/user/dashboard.php');
+    header("Location: {$PROJECT_ROOT}/user/dashboard.php");
     exit;
 }
 

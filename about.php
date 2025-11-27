@@ -1,6 +1,6 @@
 <?php 
 error_reporting(E_ALL);
-$PROJECT_ROOT = '/Hotel%20Booking%20system'; 
+$PROJECT_ROOT = '/Hotel%20Management%20system'; 
 include('includes/header.php'); 
 ?>
 
@@ -18,7 +18,9 @@ include('includes/header.php');
                 <p>The Citadel Retreat was established for discerning travelers who demand both supreme comfort and absolute privacy. Our architecture is inspired by timeless strength, yet our service is entirely modern. We offer a true retreat where you can conduct business or simply relax, knowing every detail of your security and comfort has been expertly handled.</p>
                 <p>We combine cutting-edge technology with traditional, personalized hospitality. Our integrated booking system ensures your access to our exclusive rooms and dining is instant, seamless, and protected from the moment you make a reservation.</p>
             </div>
-            <div class="image-box"></div>
+                <div class="image-box" id="image-box">
+                    <img src="assets/images/about.jpg" alt="About The Citadel Retreat"/>
+            </div>
         </div>
     </section>
 

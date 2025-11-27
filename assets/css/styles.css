@@ -872,3 +872,113 @@ section {
         grid-template-columns: 1fr; /* Stack columns vertically on tablets/mobiles */
     }
 }
+
+.tables-page-container {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+.tables-grid {
+    /* Reuses room-grid style */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: var(--spacing-lg);
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Table Card Styling (Reuses .room-card structure) */
+.table-card {
+    /* Inherits general card styling */
+    border-bottom: 5px solid var(--color-action); /* Use action color for dining accent */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Wrapper/Status Badge */
+.table-image-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+.table-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.table-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.table-status-available {
+    background-color: #008000; /* Dark Green */
+}
+
+.table-status-reserved {
+    background-color: #cc3333; /* Dark Red */
+}
+
+/* Table Details */
+.table-details {
+    padding: var(--spacing-md);
+}
+
+.table-location, .table-price {
+    font-size: 1.1rem;
+    padding: var(--spacing-xs) 0;
+}
+
+.table-price strong {
+    color: var(--color-action);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.btn-full-width[disabled] {
+    background-color: var(--color-text-light);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.load-more-container {
+    margin-top: var(--spacing-lg);
+}
+
+.load-more-container .btn {
+    padding: 1rem 2.5rem;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+    .tables-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.image-box {
+    min-height: 250px;
+    background-color: var(--color-bg-page);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-pro);
+}
+.image-box img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md);
+    display: block;
+}

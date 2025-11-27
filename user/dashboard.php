@@ -1,194 +1,156 @@
-<?php
-session_start();
-include('includes/config.php'); // Include database connection
+<?php 
+// Final Confirmed Paths
+$PROJECT_ROOT = '/Hotel%20Management%20system'; 
+include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/header.php'); 
+include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/config.php'); 
 
-// --- 1. ACCESS CONTROL ---
+// Check for authentication
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+    $_SESSION['error_message'] = "Please log in to view your dashboard.";
+    header('Location: ' . $PROJECT_ROOT . '/auth/login.php');
+    exit;
 }
 
-$user_type = $_SESSION['user_type'];
-$username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
+$user_name = $_SESSION['full_name'] ?? 'Guest'; 
 
-// --- 2. DATA FETCHING LOGIC ---
-
-// Fetch data specific to the user type
-if ($user_type === 'customer') {
-    $title = "Customer Dashboard";
-    $heading = "Your Reservations";
-    $bookings = [];
-
-    // Fetch only the customer's bookings
-    $stmt = $conn->prepare("
-        SELECT b.*, r.room_name, r.price_per_night
-        FROM bookings b
-        JOIN rooms r ON b.room_id = r.room_id
-        WHERE b.customer_id = ? 
-        ORDER BY b.check_in_date DESC
-    ");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while($row = $result->fetch_assoc()) {
-        $bookings[] = $row;
-    }
-    $stmt->close();
-
-} elseif ($user_type === 'admin') {
-    $title = "Admin Dashboard";
-    $heading = "All System Overview";
-    $stats = [
-        'total_rooms' => 0,
-        'available_rooms' => 0,
-        'total_bookings' => 0
-    ];
-    $recent_bookings = [];
-
-    // Fetch system statistics
-    $stats_result = $conn->query("SELECT COUNT(*) as total_rooms, SUM(CASE WHEN room_status = 'Available' THEN 1 ELSE 0 END) as available_rooms FROM rooms");
-    if ($stats_result->num_rows > 0) {
-        $stats = array_merge($stats, $stats_result->fetch_assoc());
-    }
-
-    $bookings_result = $conn->query("SELECT COUNT(*) as total_bookings FROM bookings");
-    if ($bookings_result->num_rows > 0) {
-        $stats = array_merge($stats, $bookings_result->fetch_assoc());
-    }
-
-    // Fetch recent bookings for the admin view (e.g., last 5)
-    $recent_q = "
-        SELECT b.*, r.room_name, c.first_name, c.last_name
-        FROM bookings b
-        JOIN rooms r ON b.room_id = r.room_id
-        JOIN customers c ON b.customer_id = c.customer_id
-        ORDER BY b.booking_date DESC LIMIT 5
-    ";
-    $recent_result = $conn->query($recent_q);
-    while($row = $recent_result->fetch_assoc()) {
-        $recent_bookings[] = $row;
-    }
+// Placeholder for session messages (success/error from booking_process.php)
+$message = '';
+$message_class = '';
+if (isset($_SESSION['success_message'])) {
+    $message = $_SESSION['success_message'];
+    $message_class = 'alert-success';
+    unset($_SESSION['success_message']);
+} elseif (isset($_SESSION['error_message'])) {
+    $message = $_SESSION['error_message'];
+    $message_class = 'alert-danger';
+    unset($_SESSION['error_message']);
 }
 
-$conn->close();
+// --- Fetch Active Bookings (Corrected Query using b.user_id) ---
+// This retrieves current/upcoming Room and Table bookings
+$active_bookings_query = $conn->prepare("
+    SELECT 
+        b.booking_id, b.check_in, b.check_out, b.status, b.total_price,
+        r.room_type, r.room_no,
+        t.table_no
+    FROM bookings b
+    LEFT JOIN rooms r ON b.room_id = r.room_id
+    LEFT JOIN tables_list t ON b.table_id = t.table_id
+    WHERE b.user_id = ? AND b.status IN ('Confirmed', 'Pending')
+    ORDER BY b.check_in ASC
+");
+$active_bookings_query->bind_param("i", $user_id);
+$active_bookings_query->execute();
+$active_bookings_result = $active_bookings_query->get_result();
+
+// --- Fetch Booking History (Completed/Cancelled) ---
+$history_query = $conn->prepare("
+    SELECT booking_id, check_in, total_price, status 
+    FROM bookings
+    WHERE user_id = ? AND status IN ('Completed', 'Cancelled')
+    ORDER BY check_in DESC LIMIT 5
+");
+$history_query->bind_param("i", $user_id);
+$history_query->execute();
+$history_result = $history_query->get_result();
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo $title; ?></title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        .header { background: #333; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .header a { color: white; margin-left: 15px; text-decoration: none; }
-        .container { max-width: 1200px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
-        .stat-box { background: #f0f8ff; padding: 20px; border-radius: 6px; text-align: center; border: 1px solid #cceeff; }
-        .stat-box h3 { margin: 0 0 5px 0; color: #007bff; }
-        .booking-card, .admin-booking-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-left: 5px solid #007bff; border-radius: 4px; }
-        .admin-booking-card { border-left-color: #28a745; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #f2f2f2; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1><?php echo $title; ?></h1>
-        <nav>
-            <a href="index.php">Home</a>
-            <a href="logout.php">Logout</a>
-        </nav>
+<div class="container dashboard-page-container">
+    <div class="dashboard-header">
+        <h1>Welcome Back, <?= htmlspecialchars($user_name); ?>!</h1>
+        <p class="lead-text">Manage your stays and reservations at The Citadel Retreat.</p>
     </div>
 
-    <div class="container">
-        <h2>Hello, <?php echo htmlspecialchars($username); ?>!</h2>
-        <?php
-        if (isset($_SESSION['booking_success'])) {
-            echo "<p style='color:green; border: 1px solid green; padding: 10px; background-color: #e6ffe6;'>";
-            echo htmlspecialchars($_SESSION['booking_success']);
-            echo "</p>";
-            unset($_SESSION['booking_success']); // Clear the message after displaying it
-        }
-        ?>
-        <h3><?php echo $heading; ?></h3>
-        <hr style="margin-bottom: 30px;">
+    <?php if ($message): ?>
+        <div class="alert <?= $message_class; ?> mb-4">
+            <?= htmlspecialchars($message); ?>
+        </div>
+    <?php endif; ?>
 
-        <?php if ($user_type === 'customer'): ?>
-            <?php if (count($bookings) > 0): ?>
-                <?php foreach ($bookings as $booking): ?>
-                    <div class="booking-card">
-                        <p><strong>Booking ID:</strong> #<?php echo htmlspecialchars($booking['booking_id']); ?></p>
-                        <p><strong>Room:</strong> <?php echo htmlspecialchars($booking['room_name']); ?> ($<?php echo number_format($booking['price_per_night'], 2); ?>/night)</p>
-                        <p><strong>Dates:</strong> <?php echo htmlspecialchars($booking['check_in_date']); ?> to <?php echo htmlspecialchars($booking['check_out_date']); ?></p>
-                        <p style="font-size: 1.2em; color: #dc3545;"><strong>Total Paid:</strong> $<?php echo number_format($booking['total_price'], 2); ?></p>
-                        </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>You have no active or past bookings. Check out our <a href="index.php">available rooms</a>!</p>
-            <?php endif; ?>
+    <!-- Quick Actions and Profile Links -->
+    <section class="quick-actions grid-3">
+        <div class="card action-card">
+            <h3>New Booking</h3>
+            <p>Need accommodation? Find the perfect room or suite.</p>
+            <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-action btn-small">Book Room</a>
+        </div>
+        <div class="card action-card">
+            <h3>Dining Reservation</h3>
+            <p>Secure your spot at The Sprout for a memorable meal.</p>
+            <a href="<?= $PROJECT_ROOT ?>/tables.php" class="btn btn-primary btn-small">Reserve Table</a>
+        </div>
+        <div class="card action-card">
+            <h3>Manage Profile</h3>
+            <p>Update your personal information and change your password.</p>
+            <a href="<?= $PROJECT_ROOT ?>/user/profile.php" class="btn btn-secondary btn-small">Update Profile</a>
+        </div>
+    </section>
 
-        <?php elseif ($user_type === 'admin'): ?>
-            <div class="stat-grid">
-                <div class="stat-box">
-                    <h3>Total Rooms</h3>
-                    <p style="font-size: 2em; color: #007bff;"><?php echo $stats['total_rooms']; ?></p>
+    <!-- Active/Upcoming Bookings Section -->
+    <section class="active-bookings-section">
+        <h2>Your Upcoming Reservations (<?= $active_bookings_result->num_rows; ?>)</h2>
+        
+        <?php if ($active_bookings_result->num_rows > 0): ?>
+            <div class="booking-list">
+                <?php while($booking = $active_bookings_result->fetch_assoc()): ?>
+                <div class="booking-card card">
+                    <div class="booking-info">
+                        <h4>
+                            <i class="fas <?= $booking['room_type'] ? 'fa-bed' : 'fa-utensils'; ?>"></i>
+                            <?= $booking['room_type'] ? htmlspecialchars($booking['room_type']) . " (Room " . htmlspecialchars($booking['room_no']) . ")" : "Table " . htmlspecialchars($booking['table_no']); ?>
+                        </h4>
+                        <p>
+                            <strong>ID:</strong> #<?= $booking['booking_id']; ?> |
+                            <strong>Status:</strong> <span class="status status-<?= strtolower($booking['status']); ?>"><?= htmlspecialchars($booking['status']); ?></span>
+                        </p>
+                        <p class="dates-info">
+                            <?php if ($booking['room_type']): ?>
+                                From <strong><?= date('M d, Y', strtotime($booking['check_in'])); ?></strong> to <strong><?= date('M d, Y', strtotime($booking['check_out'])); ?></strong>
+                            <?php else: ?>
+                                Date: <strong><?= date('M d, Y', strtotime($booking['check_in'])); ?></strong>
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                    <div class="booking-actions">
+                        <p class="price-display">₹<?= number_format($booking['total_price'], 2); ?></p>
+                        <a href="<?= $PROJECT_ROOT ?>/user/view_invoice.php?id=<?= $booking['booking_id']; ?>" class="btn btn-primary btn-view">View</a>
+                        <a href="<?= $PROJECT_ROOT ?>/bookings/cancel_booking.php?id=<?= $booking['booking_id']; ?>" class="btn btn-danger btn-cancel">Cancel</a>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <h3>Rooms Available</h3>
-                    <p style="font-size: 2em; color: #28a745;"><?php echo $stats['available_rooms']; ?></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Total Bookings</h3>
-                    <p style="font-size: 2em; color: #ffc107;"><?php echo $stats['total_bookings']; ?></p>
-                </div>
+                <?php endwhile; ?>
             </div>
-
-            <div style="margin-top: 40px;">
-                <h3>📊 Recent Bookings (Last 5)</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Customer</th>
-                            <th>Room</th>
-                            <th>Check-in</th>
-                            <th>Total Price</th>
-                            <th>Booked On</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (count($recent_bookings) > 0): ?>
-                            <?php foreach ($recent_bookings as $booking): ?>
-                                <tr>
-                                    <td>#<?php echo htmlspecialchars($booking['booking_id']); ?></td>
-                                    <td><?php echo htmlspecialchars($booking['first_name'] . ' ' . $booking['last_name']); ?></td>
-                                    <td><?php echo htmlspecialchars($booking['room_name']); ?></td>
-                                    <td><?php echo htmlspecialchars($booking['check_in_date']); ?></td>
-                                    <td>$<?php echo number_format($booking['total_price'], 2); ?></td>
-                                    <td><?php echo date('Y-m-d', strtotime($booking['booking_date'])); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr><td colspan="6" style="text-align: center;">No recent bookings found.</td></tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-
-                <div style="margin-top: 30px;">
-                    <h3>🔗 Quick Admin Links</h3>
-                    <p>In a full system, these links would lead to dedicated management pages:</p>
-                    <ul>
-                        <li><a href="#">Manage Room Inventory</a></li>
-                        <li><a href="#">View All Customer Accounts</a></li>
-                        <li><a href="#">Generate Reports</a></li>
-                    </ul>
-                </div>
+        <?php else: ?>
+            <div class="empty-state-card card text-center">
+                <i class="fas fa-calendar-alt fa-3x" style="color:var(--color-text-light); margin-bottom:15px;"></i>
+                <p>You have no active or pending reservations.</p>
+                <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-action">Start Planning Your Stay</a>
             </div>
-
         <?php endif; ?>
-    </div>
-</body>
-</html>
+    </section>
+
+    <!-- Booking History Section -->
+    <section class="history-section">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Recent Booking History</h2>
+            <a href="<?= $PROJECT_ROOT ?>/user/booking_history.php" class="btn btn-secondary btn-small">View All History</a>
+        </div>
+        <!-- This section would be populated using $history_result (data fetched above) -->
+        
+        <?php if ($history_result->num_rows > 0): ?>
+             <div class="history-list mt-3">
+                 <!-- Loop through $history_result here (similar structure to active bookings, but simpler) -->
+                 <p>History content will be displayed here...</p>
+             </div>
+        <?php else: ?>
+             <p class="text-light text-center">No completed or cancelled bookings found yet.</p>
+        <?php endif; ?>
+    </section>
+</div>
+
+<?php 
+$active_bookings_query->close();
+$history_query->close();
+include($_SERVER['DOCUMENT_ROOT'] . "{$PROJECT_ROOT}/includes/footer.php"); 
+?>

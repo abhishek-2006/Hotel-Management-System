@@ -1,6 +1,5 @@
 <?php 
-// Assuming $PROJECT_ROOT is defined in a global location or header.php
-$PROJECT_ROOT = '/Hotel%20Booking%20system'; 
+$PROJECT_ROOT = '/Hotel%20Management%20system'; 
 include('includes/header.php'); 
 ?>
 
@@ -53,7 +52,7 @@ include('includes/header.php');
                     <i class="fas fa-phone-alt"></i>
                     <div>
                         <strong>Concierge Service</strong>
-                        <p>+1 (555) 777-1111 (24/7)</p>
+                        <p>+19 (555) 777-1111 (24/7)</p>
                     </div>
                 </div>
                 <div class="contact-detail">

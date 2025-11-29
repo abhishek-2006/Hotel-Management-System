@@ -39,10 +39,10 @@ include('config.php');
                     <a href="<?= $project_root ?>/tables.php">Tables</a>
                 </li>
                 <li class="<?= ($currentPage == 'about.php') ? 'active' : '' ?>">
-                    <a href="<?= $project_root ?>/about.php">About</a>
+                    <a href="<?= $project_root ?>/about.php">About Us</a>
                 </li>
                 <li class="<?= ($currentPage == 'contact.php') ? 'active' : '' ?>">
-                    <a href="<?= $project_root ?>/contact.php">Contact</a>
+                    <a href="<?= $project_root ?>/contact.php">Contact Us</a>
                 </li>
                 
                 <?php if(isset($_SESSION['user_id'])): ?>

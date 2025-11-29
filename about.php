@@ -24,6 +24,41 @@ include('includes/header.php');
         </div>
     </section>
 
+    <section class="quick-view">
+        <h2 class="text-center">Experience Our Offerings</h2>
+        <div class="quick-view-grid grid-3">
+            <div class="card quick-view-card">
+                <img src="assets/images/room.jpg" alt="Luxurious Room"/>
+                <h3>Luxurious Rooms</h3>
+                <p>Discover our range of exquisitely designed rooms, each equipped with state-of-the-art amenities and tailored for your utmost comfort and security.</p>
+                <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-action btn-small">Explore Rooms</a>
+            </div>
+            <div class="card quick-view-card">
+                <img src="assets/images/dining.jpg" alt="Exclusive Dining"/>
+                <h3>Exclusive Dining</h3>
+                <p>Savor gourmet cuisine in our signature restaurants, where privacy meets culinary excellence. Reserve your table through our secure booking system.</p>
+                <a href="<?= $PROJECT_ROOT ?>/tables.php" class="btn btn-action btn-small">Reserve a Table</a>
+            </div>
+            <div class="card quick-view-card">
+                <img src="assets/images/spa.jpg" alt="Rejuvenating Spa"/>
+                <h3>Rejuvenating Spa</h3>
+                <p>Indulge in our spa services designed to relax and revitalize. Book your treatments with confidence through our secure platform.</p>
+                <a href="<?= $PROJECT_ROOT ?>/spa.php" class="btn btn-action btn-small">Book a Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Video Section -->
+    <section class="video-section text-center">
+        <h2>Take a Virtual Tour of The Citadel Retreat</h2>
+        <div class="video-wrapper">
+            <video controls>
+                <source src="assets/videos/citadel_retreat_tour.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
     <section class="values-section">
         <h2 class="text-center">Our Core Pillars</h2>
         <div class="values-grid grid-3">

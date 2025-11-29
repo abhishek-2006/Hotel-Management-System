@@ -982,3 +982,107 @@ section {
     border-radius: var(--border-radius-md);
     display: block;
 }
+
+.image-box img:hover {
+    transform: scale(1.02);
+    transition: transform 0.4s ease;
+}
+
+/* ------------------------------
+   QUICK VIEW SECTION (Matched Style)
+--------------------------------*/
+.quick-view {
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.quick-view h2 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-brand);
+    font-weight: 700;
+}
+
+.quick-view-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.quick-view-card {
+    background: #fff;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-pro);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: var(--spacing-md);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.quick-view-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-pro-hover);
+}
+
+.quick-view-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 4px solid var(--color-action);
+}
+
+.quick-view-card h3 {
+    font-size: 1.3rem;
+    color: var(--color-brand);
+    margin-top: var(--spacing-md);
+}
+
+.quick-view-card p {
+    padding: 0 var(--spacing-md);
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    line-height: 1.7;
+    color: var(--color-text-light);
+}
+
+.quick-view-card .btn-small {
+    margin-top: var(--spacing-sm);
+}
+
+
+/* ------------------------------
+   VIDEO SECTION (Matched Style)
+--------------------------------*/
+.video-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+}
+
+.video-section h2 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-brand);
+    font-weight: 700;
+}
+
+.video-wrapper {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-pro);
+}
+
+.video-wrapper video {
+    width: 100%;
+    display: block;
+    background: #000;
+}
+
+/* ------------------------------
+    Responsive Adjustments
+--------------------------------*/
+@media (max-width: 900px) {
+    .quick-view-card img { height: 180px; }
+    .video-section h2 { font-size: 1.6rem; }
+}
+@media (max-width: 600px) {
+    .quick-view-card img { height: 150px; }
+}

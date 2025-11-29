@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isLoading = true;
             loadingIndicator.style.display = 'block';
 
-            fetch('../ajax/load_rooms.php', {
+            fetch('assets/ajax/load_rooms.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `offset=${currentOffset}&limit=${limit}`

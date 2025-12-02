@@ -46,7 +46,7 @@ if (isset($_POST['reset_password'])) {
         $update->bind_param("si", $new, $user_id);
 
         if ($update->execute()) {
-            session_destroy(); // logout after reset
+            session_destroy(); // logout after resetting password
             header("Location: login.php?reset=success");
             exit;
         } else {

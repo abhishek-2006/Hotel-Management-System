@@ -4,15 +4,18 @@
 :root {
     /* Color Palette */
     --color-brand: #0077B6;      /* Professional Blue - Primary brand color */
+    --color-brand-dark: #023e8a; /* Darker Blue for accents */
     --color-action: #F4A261;     /* Soft Orange/Terracotta - Key action/booking button */
     --color-bg-primary: #F0F4F8; /* Light blue-gray for soft background */
     --color-bg-secondary: #ffffff;/* Pure White - Card/Module background */
     --color-text-dark: #264653;  /* Deep Teal - Primary text (Better contrast than pure black) */
     --color-text-light: #778899; /* Slate Gray - Secondary text/placeholder */
     --color-border-light: #e6e6e6;/* Very Light Border */
+    --color-border-subtle: #d1d5db; /* Subtle border for inputs */
     
-    --shadow-pro: 0 15px 50px rgba(0, 0, 0, 0.15); /* Soft, professional shadow */
+    --shadow-pro: 0 15px 50px rgba(0, 0, 0, 0.15);
     --shadow-btn: 0 5px 15px rgba(244, 162, 97, 0.4);
+    --shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
     
     --gradient-primary: linear-gradient(135deg, #1f4280 0%, #0077B6 100%); /* Deep Blue Gradient */
     --gradient-button: linear-gradient(90deg, #F4A261 0%, #E9C46A 100%); /* Warm Action Gradient */
@@ -28,12 +31,14 @@
     
     --border-radius-sm: 4px;
     --border-radius-md: 10px;
+    --border-radius: 12px;
     
     --transition-fast: 0.25s ease-out;
 }
 
 /* Global Reset & Typography */
 * {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -96,6 +101,7 @@ section {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin: 0.5rem 0;
 }
 
 .btn-primary {
@@ -770,18 +776,40 @@ section {
 }
 
 /* Header Styling */
+.auth-wrapper {
+    width: 100%;
+    margin: auto;
+}
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: slideUp 0.6s ease-out;
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 .auth-header h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
-    color: var(--color-brand);
+    color: var(--color-text-dark);
     margin-bottom: var(--spacing-xs);
     text-align: center;
+    margin-bottom: 8px;
 }
 .auth-header p {
-    color: var(--color-text-light);
     margin-bottom: var(--spacing-lg);
     font-weight: 300;
     text-align: center;
+    font-size: 0.95rem;
 }
 
 /* Input Fields */

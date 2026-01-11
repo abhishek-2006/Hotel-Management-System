@@ -64,16 +64,17 @@ try {
     while ($r = $result->fetch_assoc()) {
         $insert = $conn->prepare("
             INSERT INTO bookings 
-            (user_id, room_id, check_in, check_out, total_price, status)
-            VALUES (?, ?, ?, ?, ?, 'Confirmed')
+            (user_id, room_id, check_in, check_out, total_price, status, rooms_booked)
+            VALUES (?, ?, ?, ?, ?, 'Confirmed', ?)
         ");
         $insert->bind_param(
-            "iissd",
+            "iissdi",
             $user_id,
             $r['room_id'],
             $check_in,
             $check_out,
-            $total_price
+            $total_price,
+            $num_rooms
         );
         $insert->execute();
     }

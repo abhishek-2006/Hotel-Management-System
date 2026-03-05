@@ -58,7 +58,7 @@ if (isset($_SESSION['user_id'])) {
         <h2>Have Questions?</h2>
         <p>Learn more about our hotel and services, or get in touch with our front desk team.</p>
         <a href="about.php" class="btn btn-primary">About Us</a>
-        <a href="contact.php" class="btn btn-action">Contact Us</a>
+        <a href="contact.php" class="btn btn-primary">Contact Us</a>
     </section>
 
 <script src="assets/js/main.js"></script> <?php 

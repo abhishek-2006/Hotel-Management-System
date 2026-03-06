@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
 
-$PROJECT_ROOT = '/Hotel%20Management%20system';
 require_once("includes/config.php");
 
 // 2. FETCH TABLES
@@ -44,7 +43,7 @@ include("includes/header.php");
                     <div class="table-card <?= $is_special ? 'premium-card' : ''; ?> fade-in-up">
                         <div class="table-image-area">
                             <!-- Placeholder image logic -->
-                            <img src="<?= $PROJECT_ROOT ?>/assets/images/tables/<?= !empty($table['image']) ? $table['image'] : 'default-table.jpg' ?>" 
+                            <img src="assets/images/tables/<?= !empty($table['image']) ? $table['image'] : 'default-table.jpg' ?>" 
                                  alt="Table <?= $table['table_type'] ?>" 
                                  onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop'">
                             

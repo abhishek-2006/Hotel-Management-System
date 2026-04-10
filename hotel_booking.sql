@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 05, 2026 at 11:20 AM
+-- Generation Time: Apr 10, 2026 at 11:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,13 @@ CREATE TABLE `activity_logs` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`log_id`, `user_id`, `action`, `ip_address`, `created_at`) VALUES
+(24, 1, 'User logged in successfully.', '::1', '2026-04-10 09:12:33');
+
 -- --------------------------------------------------------
 
 --
@@ -58,16 +65,6 @@ CREATE TABLE `bookings` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `rooms_booked` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bookings`
---
-
-INSERT INTO `bookings` (`booking_id`, `user_id`, `room_id`, `table_id`, `check_in`, `check_out`, `check_in_time`, `check_out_time`, `food_included`, `total_price`, `payment_method`, `status`, `invoice_no`, `created_at`, `rooms_booked`) VALUES
-(1, 2, 4, NULL, '2025-12-17', '2025-12-19', '00:00:00', '16:34:27', 'No', 24000.00, 'Cash', 'Completed', 'BKG-20251217122439-2', '2025-12-17 06:54:39', 1),
-(2, 3, 4, NULL, '2026-01-10', '2026-01-11', NULL, NULL, 'No', 12000.00, 'Cash', 'Confirmed', NULL, '2026-01-10 14:57:17', 1),
-(3, 3, 1, NULL, '2026-01-11', '2026-01-12', NULL, NULL, 'No', 3500.00, 'Cash', 'Confirmed', NULL, '2026-01-11 05:40:07', 1),
-(4, 3, 4, NULL, '2026-01-11', '2026-01-12', NULL, NULL, 'No', 12000.00, 'Cash', 'Confirmed', NULL, '2026-01-11 05:49:22', 1);
 
 -- --------------------------------------------------------
 
@@ -285,28 +282,6 @@ CREATE TABLE `tables` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tables`
---
-
-INSERT INTO `tables` (`table_id`, `table_type`, `price_per_hour`, `capacity`, `description`, `image`, `status`, `created_at`) VALUES
-(1, 'Basic Dining Table', 0.00, 4, 'Simple 4-seater dining setup with standard comfort and quick-service access.', 'basic_table.png', 'Available', '2025-11-27 08:05:04'),
-(2, 'Couple Candlelight Table', 900.00, 2, 'Romantic two-seater with candlelight setup, soft lighting, and private corner seating.', 'couple_table.png', 'Available', '2025-11-27 08:05:04'),
-(3, 'Family Round Table', 1200.00, 6, 'Ideal for families, large round table with comfortable seating and child-friendly arrangement.', 'family_table.png', 'Available', '2025-11-27 08:05:04'),
-(4, 'Outdoor Garden Table', 1000.00, 4, 'Open-air setup in the garden area with soft lighting and eco-themed ambience.', 'garden_table.png', 'Available', '2025-11-27 08:05:04'),
-(5, 'Business Meeting Table', 2500.00, 6, 'Premium table with sound control, charging outlets, desk-style seating, and priority service.', 'business_table.png', 'Available', '2025-11-27 08:05:04'),
-(6, 'VIP Lounge Table', 4500.00, 8, 'Exclusive VIP table with enhanced privacy, soft couches, personalized staff, and premium snacks.', 'vip_table.png', 'Available', '2025-11-27 08:05:04'),
-(7, 'Luxury Private Booth', 8000.00, 6, 'Fully enclosed booth with ambient lights, privacy curtains, and premium hospitality.', 'private_booth.png', 'Available', '2025-11-27 08:05:04'),
-(8, 'Elite Platinum Pod', 12000.00, 6, 'Ultra-premium pod with noise cancellation, dedicated server, customizable ambience, and gourmet service.', 'platinum_pod.png', 'Available', '2025-11-27 08:05:04'),
-(9, 'General Family Table', 0.00, 6, 'Spacious 6-seater general dining table located in the main hall. Perfect for casual family dinners.', 'general_6_seater.png', 'Available', '2026-03-05 08:50:55'),
-(10, 'Standard Window Table', 0.00, 2, 'Cozy 2-seater table located by the large glass windows with a view of the resort grounds.', 'window_table.png', 'Available', '2026-03-05 08:50:55'),
-(11, 'Rooftop Casual Table', 0.00, 4, 'Standard 4-seater seating on the rooftop terrace. Enjoy the fresh air without the premium setup.', 'rooftop_casual.png', 'Available', '2026-03-05 08:50:55'),
-(12, 'High-Top Bar Table', 0.00, 2, 'Elevated bar-style seating near the lounge area. Ideal for a quick bite or drinks.', 'bar_table.png', 'Available', '2026-03-05 08:50:55'),
-(13, 'Terrace Group Table', 0.00, 8, 'Large 8-seater general table on the outdoor terrace for bigger groups.', 'terrace_8_seater.png', 'Available', '2026-03-05 08:50:55'),
-(14, 'Chef\'s Table Experience', 6000.00, 4, 'Exclusive seating with a view of the open kitchen, including a personalized greeting from the Executive Chef.', 'chefs_table.png', 'Available', '2026-03-05 08:50:55'),
-(15, 'Birthday Celebration Booth', 3000.00, 8, 'Specially decorated booth for birthdays, includes party props and a semi-private partitioned area.', 'birthday_booth.png', 'Available', '2026-03-05 08:50:55'),
-(16, 'Sunset View Balcony', 2000.00, 2, 'A secluded 2-seater on a private balcony overlooking the horizon. Best reserved for evening sessions.', 'sunset_balcony.png', 'Available', '2026-03-05 08:50:55');
-
 -- --------------------------------------------------------
 
 --
@@ -328,9 +303,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `full_name`, `email`, `phone`, `password`, `role`, `created_at`) VALUES
-(1, 'Admin', 'admin@hotel.com', '9999999999', 'admin123', 'admin', '2025-11-03 06:01:59'),
-(2, 'Test', 'test@gmail.com', '1234567890', '123', 'user', '2025-11-27 14:02:51'),
-(3, 'Test1', 'test1@gmail.com', '1234567089', '123', 'user', '2026-01-10 14:34:44');
+(1, 'Admin', 'admin@hotel.com', '9999999999', 'admin123', 'admin', '2025-11-03 00:31:59'),
+(2, 'Test', 'test@gmail.com', '1234567890', '123', 'user', '2025-11-27 08:32:51'),
+(3, 'Test1', 'test1@gmail.com', '1234567089', '123', 'user', '2026-01-10 09:04:44');
 
 --
 -- Indexes for dumped tables
@@ -416,7 +391,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `bookings`
@@ -488,7 +463,7 @@ ALTER TABLE `activity_logs`
 ALTER TABLE `bookings`
   ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`table_id`) REFERENCES `tables_list` (`table_id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`table_id`) REFERENCES `tables` (`table_id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `invoices`

@@ -1,8 +1,6 @@
 <?php 
 
-if (!isset($PROJECT_ROOT)) {
-    $PROJECT_ROOT = '/Hotel%20Management%20system';
-}
+
 
 require_once('config.php');
 
@@ -85,8 +83,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             
             <!-- Branding / Logo -->
             <div class="flex items-center gap-4">
-                <a href="<?= $PROJECT_ROOT ?>/admin/dashboard.php" class="flex items-center gap-3">
-                    <a href="<?= $PROJECT_ROOT ?>/admin/dashboard.php" class="h-12 w-12 rounded-lg flex items-center justify-center">
+                <a href="/admin/dashboard.php" class="flex items-center gap-3">
+                    <a href="/admin/dashboard.php" class="h-12 w-12 rounded-lg flex items-center justify-center">
                         <img src="assets/images/logo.png" alt="Citadel Logo" class="h-12 w-12 object-contain">
                     </a>
                     <div class="hidden md:block">
@@ -113,7 +111,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         $isActive = ($currentPage == $item[1]);
                     ?>
                     <li class="relative group">
-                        <a href="<?= $PROJECT_ROOT ?>/admin/<?= $item[1] ?>" 
+                        <a href="/admin/<?= $item[1] ?>" 
                            class="flex items-center gap-2 text-sm font-semibold transition-all duration-200 <?= $isActive ? 'text-admin-primary dark:text-admin-accent' : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white' ?>">
                             <i class="fas <?= $item[2] ?> text-xs opacity-70"></i>
                             <?= $item[0] ?>
@@ -134,7 +132,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </div>
                 
                 <!-- Logout Button -->
-                <a href="<?= $PROJECT_ROOT ?>/logout.php" 
+                <a href="/logout.php" 
                    class="h-10 w-10 flex items-center justify-center rounded-xl bg-red-50 text-red-600 hover:bg-red-600 hover:text-white dark:bg-red-500/10 dark:text-red-400 dark:hover:bg-red-500 transition-all duration-300 shadow-sm"
                    title="Logout from System">
                     <i class="fas fa-sign-out-alt"></i>

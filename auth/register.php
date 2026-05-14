@@ -1,11 +1,10 @@
 <?php 
 // Define project root for consistent pathing
-$PROJECT_ROOT = '/Hotel%20Management%20system';
 include('../includes/config.php');
 
 // Check if user is already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: {$PROJECT_ROOT}/user/dashboard.php");
+    header("Location: /user/dashboard.php");
     exit;
 }
 
@@ -23,7 +22,7 @@ if (isset($_SESSION['error_message'])) {
     <title>Join The Citadel Retreat | Register</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?= $PROJECT_ROOT ?>/assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -213,9 +212,9 @@ if (isset($_SESSION['error_message'])) {
     <div class="auth-card">
         <!-- Logo Section -->
         <div class="logo-container">
-            <a href="<?= $PROJECT_ROOT ?>/index.php">
-                <img src="<?= $PROJECT_ROOT ?>/assets/images/logo.png" alt="Citadel Retreat Logo" onerror="this.style.display='none'">
-                <?php if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/assets/images/logo.png')): ?>
+            <a href="/index.php">
+                <img src="/assets/images/logo.png" alt="Citadel Retreat Logo" onerror="this.style.display='none'">
+                <?php if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/assets/images/logo.png')): ?>
                     <h1 style="font-family: 'Playfair Display', serif; color: var(--color-brand); font-size: 1.4rem;">THE CITADEL</h1>
                 <?php endif; ?>
             </a>
@@ -232,7 +231,7 @@ if (isset($_SESSION['error_message'])) {
             </div>
         <?php endif; ?>
 
-        <form action="<?= $PROJECT_ROOT ?>/bookings/auth_process.php" method="POST">
+        <form action="/bookings/auth_process.php" method="POST">
             <input type="hidden" name="action" value="register">
 
             <div class="form-grid">
@@ -274,7 +273,7 @@ if (isset($_SESSION['error_message'])) {
 
         <div class="auth-footer">
             <p>Already a member? <a href="login.php">Sign in here</a></p>
-            <a href="<?= $PROJECT_ROOT ?>/index.php" class="back-home">
+            <a href="/index.php" class="back-home">
                 <i class="fas fa-arrow-left"></i> Back to Homepage
             </a>
         </div>

@@ -1,13 +1,12 @@
 <?php 
 
-$PROJECT_ROOT = '/Hotel%20Management%20system';
-$ADMIN_ROOT = $PROJECT_ROOT . '/admin';
+$ADMIN_ROOT = '/admin';
 
 require_once('includes/config.php');
 
 // 2. ADMIN AUTH GUARD (Uncomment when ready)
 // if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') { 
-//     header("Location: " . $PROJECT_ROOT . "/auth/login.php"); 
+//     header("Location: " . "/auth/login.php"); 
 //     exit; 
 // }
 

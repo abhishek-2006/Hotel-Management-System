@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-$PROJECT_ROOT = '/Hotel Management system';
-include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/includes/config.php');
 
 // 1. Auth check
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error_message'] = "Please log in first.";
-    header("Location: {$PROJECT_ROOT}/auth/login.php");
+    header("Location: /auth/login.php");
     exit;
 }
 
@@ -17,7 +16,7 @@ $booking_id = intval($_GET['id'] ?? 0);
 // 2. Basic validation
 if ($booking_id <= 0) {
     $_SESSION['error_message'] = "Invalid cancel request.";
-    header("Location: {$PROJECT_ROOT}/user/dashboard.php");
+    header("Location: /user/dashboard.php");
     exit;
 }
 
@@ -33,7 +32,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     $_SESSION['error_message'] = "Booking not found.";
-    header("Location: {$PROJECT_ROOT}/user/dashboard.php");
+    header("Location: /user/dashboard.php");
     exit;
 }
 
@@ -42,7 +41,7 @@ $booking = $result->fetch_assoc();
 // 4. Prevent cancelling completed / already cancelled
 if (in_array($booking['status'], ['Cancelled', 'Completed'])) {
     $_SESSION['error_message'] = "This booking cannot be cancelled.";
-    header("Location: {$PROJECT_ROOT}/user/dashboard.php");
+    header("Location: /user/dashboard.php");
     exit;
 }
 
@@ -61,6 +60,6 @@ if ($update->execute()) {
 }
 
 // 6. Redirect back
-header("Location: {$PROJECT_ROOT}/user/dashboard.php");
+header("Location: /user/dashboard.php");
 exit;
 ?>

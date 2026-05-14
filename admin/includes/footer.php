@@ -7,7 +7,7 @@
                 <!-- Section 1: Admin Branding -->
                 <div class="flex flex-col items-center md:items-start gap-3">
                     <div class="flex items-center gap-3">
-                        <a href="<?= $PROJECT_ROOT ?>/admin/dashboard.php" class="flex items-center gap-3">
+                        <a href="/admin/dashboard.php" class="flex items-center gap-3">
                             <img src="assets/images/logo.png" alt="Citadel Logo" class="h-12 w-auto opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
                         </a>
                         <span class="text-[10px] uppercase tracking-[0.2em] font-black text-slate-400 dark:text-slate-500">

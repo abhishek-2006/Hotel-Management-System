@@ -1,6 +1,5 @@
 <?php 
 // NOTE: This file is assumed to be in the project root.
-$PROJECT_ROOT = '/Hotel%20Management%20system'; 
 include('includes/header.php'); 
 error_reporting(E_ALL);
 

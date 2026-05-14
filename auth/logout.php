@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-$PROJECT_ROOT = '/Hotel Management system';
-
 // Destroy all session data
 session_unset();
 session_destroy();
@@ -22,6 +20,6 @@ if (ini_get("session.use_cookies")) {
 }
 
 // Redirect to home page after logout
-header("Location: {$PROJECT_ROOT}/index.php");
+header("Location: /index.php");
 exit;
 ?>

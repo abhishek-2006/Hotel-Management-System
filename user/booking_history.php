@@ -1,11 +1,10 @@
 <?php 
-$PROJECT_ROOT = '/Hotel Management system';
-include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/header.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php');
 
 // Check user login
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error_message'] = "Please log in to view your booking history.";
-    header('Location: ' . $PROJECT_ROOT . '/auth/login.php');
+    header('Location: ' . '/auth/login.php');
     exit;
 }
 
@@ -58,7 +57,7 @@ $history_result = $history_query->get_result();
                 </div>
                 <div class="booking-actions">
                     <p class="price-display">₹<?= number_format($booking['total_price'], 2); ?></p>
-                    <a href="<?= $PROJECT_ROOT ?>/user/view_invoice.php?id=<?= $booking['booking_id']; ?>" class="btn btn-primary btn-small">View Invoice</a>
+                    <a href="/user/view_invoice.php?id=<?= $booking['booking_id']; ?>" class="btn btn-primary btn-small">View Invoice</a>
                 </div>
             </div>
             <?php endwhile; ?>
@@ -67,12 +66,12 @@ $history_result = $history_query->get_result();
         <div class="empty-state-card card text-center">
             <i class="fas fa-calendar-alt fa-3x" style="color:var(--color-text-light); margin-bottom:15px;"></i>
             <p>No completed or cancelled bookings found yet.</p>
-            <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-action">Start Booking</a>
+            <a href="/rooms.php" class="btn btn-action">Start Booking</a>
         </div>
     <?php endif; ?>
 </div>
 
 <?php 
 $history_query->close();
-include($_SERVER['DOCUMENT_ROOT'] . "{$PROJECT_ROOT}/includes/footer.php"); 
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); 
 ?>

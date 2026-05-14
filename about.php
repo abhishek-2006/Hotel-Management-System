@@ -1,6 +1,5 @@
 <?php 
 error_reporting(E_ALL);
-$PROJECT_ROOT = '/Hotel%20Management%20system'; 
 include('includes/header.php'); 
 ?>
 
@@ -31,19 +30,19 @@ include('includes/header.php');
                 <img src="assets/images/room.jpg" alt="Luxurious Room"/>
                 <h3>Luxurious Rooms</h3>
                 <p>Discover our range of exquisitely designed rooms, each equipped with state-of-the-art amenities and tailored for your utmost comfort and security.</p>
-                <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-action btn-small">Explore Rooms</a>
+                <a href="/rooms.php" class="btn btn-action btn-small">Explore Rooms</a>
             </div>
             <div class="card quick-view-card">
                 <img src="assets/images/dining.jpg" alt="Exclusive Dining"/>
                 <h3>Exclusive Dining</h3>
                 <p>Savor gourmet cuisine in our signature restaurants, where privacy meets culinary excellence. Reserve your table through our secure booking system.</p>
-                <a href="<?= $PROJECT_ROOT ?>/tables.php" class="btn btn-action btn-small">Reserve a Table</a>
+                <a href="/tables.php" class="btn btn-action btn-small">Reserve a Table</a>
             </div>
             <div class="card quick-view-card">
                 <img src="assets/images/spa/spa_about.jpg" alt="Rejuvenating Spa"/>
                 <h3>Rejuvenating Spa</h3>
                 <p>Indulge in our spa services designed to relax and revitalize. Book your treatments with confidence through our secure platform.</p>
-                <a href="<?= $PROJECT_ROOT ?>/spa.php" class="btn btn-action btn-small">Book a Session</a>
+                <a href="/spa.php" class="btn btn-action btn-small">Book a Session</a>
             </div>
         </div>
     </section>
@@ -79,8 +78,8 @@ include('includes/header.php');
 
     <section class="cta-section text-center">
         <h2>Secure Your Experience at The Citadel Retreat</h2>
-        <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-action">View Exclusive Rooms</a>
-        <a href="<?= $PROJECT_ROOT ?>/contact.php" class="btn btn-secondary">Request Concierge Service</a>
+        <a href="/rooms.php" class="btn btn-action">View Exclusive Rooms</a>
+        <a href="/contact.php" class="btn btn-secondary">Request Concierge Service</a>
     </section>
 
 </div>

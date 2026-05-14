@@ -1,13 +1,12 @@
 <?php
 session_start();
-$PROJECT_ROOT = '/Hotel%20Management%20system'; 
 include('../includes/config.php'); 
 error_reporting(E_ALL);
 
 // Ensure a POST request was made and the action is defined
 if ($_SERVER["REQUEST_METHOD"] !== "POST" || !isset($_POST['action'])) {
     $_SESSION['error_message'] = "Invalid request method.";
-    header("Location: {$PROJECT_ROOT}/index.php");
+    header("Location: /index.php");
     exit;
 }
 
@@ -31,7 +30,7 @@ if ($action === 'register') {
 
     if (empty($full_name) || empty($email) || empty($phone) || empty($password)) {
         $_SESSION['error_message'] = "All fields are required for registration.";
-        header("Location: {$PROJECT_ROOT}/auth/register.php");
+        header("Location: /auth/register.php");
         exit;
     }
 
@@ -44,7 +43,7 @@ if ($action === 'register') {
     if ($stmt->num_rows > 0) {
         $_SESSION['error_message'] = "This email address is already registered.";
         $stmt->close();
-        header("Location: {$PROJECT_ROOT}/auth/register.php");
+        header("Location: /auth/register.php");
         exit;
     }
     $stmt->close();
@@ -61,12 +60,12 @@ if ($action === 'register') {
         $_SESSION['success_message'] = "Registration successful! Please log in.";
         
         // AUTH-R5: Redirect to Login
-        header("Location: {$PROJECT_ROOT}/auth/login.php");
+        header("Location: /auth/login.php");
         exit;
     } else {
         $_SESSION['error_message'] = "Registration failed due to a server error.";
         error_log("Registration DB Error: " . $stmt->error);
-        header("Location: {$PROJECT_ROOT}/auth/register.php");
+        header("Location: /auth/register.php");
         exit;
     }
     $stmt->close();
@@ -79,7 +78,7 @@ elseif ($action === 'login') {
 
     if (empty($email) || empty($password)) {
         $_SESSION['error_message'] = "Email and password are required.";
-        header("Location: {$PROJECT_ROOT}/auth/login.php");
+        header("Location: /auth/login.php");
         exit;
     }
 
@@ -104,11 +103,11 @@ elseif ($action === 'login') {
 
             // AUTH-L4: Redirection based on role
             if ($user['role'] === 'admin') {
-                header("Location: {$PROJECT_ROOT}/admin/dashboard.php");
+                header("Location: /admin/dashboard.php");
                 exit;
             } else {
                 // Default to user dashboard
-                header("Location: {$PROJECT_ROOT}/user/dashboard.php");
+                header("Location: /user/dashboard.php");
                 exit;
             }
         }
@@ -116,7 +115,7 @@ elseif ($action === 'login') {
 
     // AUTH-L5: Failure Response (User not found or password mismatch)
     $_SESSION['error_message'] = "Invalid credentials. Please try again.";
-    header("Location: {$PROJECT_ROOT}/auth/login.php");
+    header("Location: /auth/login.php");
     exit;
 }
 
@@ -133,13 +132,13 @@ elseif ($action === 'logout') {
     session_destroy();
     
     // Redirect to homepage
-    header("Location: {$PROJECT_ROOT}/index.php");
+    header("Location: /index.php");
     exit;
 }
 else {
     // If action is unrecognized
     $_SESSION['error_message'] = "Unrecognized form action.";
-    header("Location: {$PROJECT_ROOT}/index.php");
+    header("Location: /index.php");
     exit;
 }
 ?>

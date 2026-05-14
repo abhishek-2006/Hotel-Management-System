@@ -1,10 +1,9 @@
 <?php
-$PROJECT_ROOT = '/Hotel Management system';
-include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/header.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php');
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error_message'] = "Please log in first.";
-    header("Location: {$PROJECT_ROOT}/auth/login.php");
+    header("Location: /auth/login.php");
     exit;
 }
 
@@ -26,8 +25,8 @@ $stmt->close();
         <p><strong>Phone:</strong> <?= htmlspecialchars($user['phone']); ?></p>
         <p><strong>Member Since:</strong> <?= date("d M Y", strtotime($user['created_at'])); ?></p>
 
-        <a href="<?= $PROJECT_ROOT ?>/user/update_profile.php" class="btn btn-primary mt-3">Edit Profile</a>
+        <a href="/user/update_profile.php" class="btn btn-primary mt-3">Edit Profile</a>
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . "{$PROJECT_ROOT}/includes/footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>

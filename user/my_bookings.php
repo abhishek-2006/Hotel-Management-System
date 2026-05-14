@@ -4,11 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
 
-$PROJECT_ROOT = '/Hotel%20Management%20system';
 require_once('../includes/config.php');
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ' . $PROJECT_ROOT . '/auth/login.php');
+    header('Location: ' . '/auth/login.php');
     exit;
 }
 
@@ -295,7 +294,7 @@ include('../includes/header.php');
                             <i class="fas fa-calendar-day"></i>
                             <h3>No <?= $category ?> reservations</h3>
                             <p class="mb-4">It looks like you haven't made any <?= $category ?> plans yet.</p>
-                            <a href="<?= $PROJECT_ROOT ?>/rooms.php" class="btn btn-primary">Discover Rooms</a>
+                            <a href="/rooms.php" class="btn btn-primary">Discover Rooms</a>
                         </div>
                     <?php else: ?>
                         <div class="bookings-grid">

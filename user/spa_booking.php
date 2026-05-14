@@ -1,11 +1,10 @@
 <?php
-$PROJECT_ROOT = '/Hotel Management system'; 
-include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/header.php'); 
+include($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'); 
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error_message'] = "Please log in to book a spa session.";
-    header("Location: {$PROJECT_ROOT}/auth/login.php");
+    header("Location: /auth/login.php");
     exit;
 }
 
@@ -53,14 +52,14 @@ $spa_services_query = $conn->query("SELECT * FROM spa_services ORDER BY service_
             <?php while($service = $spa_services_query->fetch_assoc()): ?>
                 <div class="card spa-service-card">
                     <div class="service-image-wrapper">
-                        <img src="<?= $PROJECT_ROOT ?>/assets/images/spa/<?= htmlspecialchars($service['image']); ?>" 
+                        <img src="/assets/images/spa/<?= htmlspecialchars($service['image']); ?>" 
                             alt="<?= htmlspecialchars($service['service_name']); ?>">
                     </div>
                     <div class="service-details">
                         <h3><?= htmlspecialchars($service['service_name']); ?></h3>
                         <p><?= htmlspecialchars($service['description']); ?></p>
                         <p><strong>Price:</strong> ₹<?= number_format($service['price']); ?></p>
-                        <form method="POST" action="<?= $PROJECT_ROOT ?>/user/process_spa_booking.php">
+                        <form method="POST" action="/user/process_spa_booking.php">
                             <input type="hidden" name="service_id" value="<?= $service['service_id']; ?>">
                             <input type="hidden" name="booking_date" value="<?= $today; ?>">
                             <button type="submit" class="btn btn-primary btn-full-width">Book Now</button>
@@ -88,5 +87,5 @@ $spa_services_query = $conn->query("SELECT * FROM spa_services ORDER BY service_
 
 <?php
 $booking_check_stmt->close();
-include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/footer.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php');
 ?>

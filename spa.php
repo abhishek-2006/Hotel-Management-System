@@ -1,9 +1,8 @@
 <?php 
-$PROJECT_ROOT = '/Hotel Management system';
-include($_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/includes/header.php'); 
+include($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'); 
 ?>
 
-<link rel="stylesheet" href="<?= $PROJECT_ROOT ?>/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/styles.css">
 
 <section class="spa-hero">
     <div class="spa-overlay"></div>

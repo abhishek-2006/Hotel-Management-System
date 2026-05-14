@@ -27,7 +27,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows == 0) {
     $_SESSION['error_message'] = "Invalid room selected. Please go back and select a valid room.";
-    header('Location: ' . $PROJECT_ROOT . '/rooms.php');
+    header('Location: ' . '/rooms.php');
     exit();
 }
 $room = $result->fetch_assoc();

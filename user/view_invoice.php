@@ -5,13 +5,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // 2. DEFINE PATHS & INCLUDES
-$PROJECT_ROOT = '/Hotel%20Management%20system';
 require_once('../includes/config.php');
 
 // 3. AUTHENTICATION & VALIDATION
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error_message'] = "Please log in to view your invoice.";
-    header("Location: {$PROJECT_ROOT}/auth/login.php");
+    header("Location: /auth/login.php");
     exit;
 }
 
@@ -20,7 +19,7 @@ $booking_id = intval($_GET['id'] ?? 0);
 
 if ($booking_id <= 0) {
     $_SESSION['error_message'] = "Invalid invoice request.";
-    header("Location: {$PROJECT_ROOT}/user/my_bookings.php");
+    header("Location: /user/my_bookings.php");
     exit;
 }
 
@@ -45,7 +44,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     $_SESSION['error_message'] = "Invoice not found or access denied.";
-    header("Location: {$PROJECT_ROOT}/user/my_bookings.php");
+    header("Location: /user/my_bookings.php");
     exit;
 }
 
@@ -61,7 +60,7 @@ $nights = $date1->diff($date2)->days;
 $nights = ($nights <= 0 && $isRoom) ? 1 : $nights; 
 
 // Branding Asset Paths
-$logo_path = $_SERVER['DOCUMENT_ROOT'] . $PROJECT_ROOT . '/assets/logo.png';
+$logo_path = $_SERVER['DOCUMENT_ROOT'] . '/assets/logo.png';
 
 // Include Global Header (which handles favicon and further UI logic)
 include('../includes/header.php'); 
@@ -242,7 +241,7 @@ include('../includes/header.php');
             <div class="inv-header">
                 <div class="brand-info">
                     <?php if(file_exists($logo_path)): ?>
-                        <img src="<?= $PROJECT_ROOT ?>/assets/images/logo.png" alt="Citadel Logo">
+                        <img src="/assets/images/logo.png" alt="Citadel Logo">
                     <?php endif; ?>
                     <h1>The Citadel Retreat</h1>
                     <p style="color: #777; font-size: 0.9rem;">
@@ -341,7 +340,7 @@ include('../includes/header.php');
 
         <!-- External Controls -->
         <div class="inv-actions-nav">
-            <a href="<?= $PROJECT_ROOT ?>/user/my_bookings.php" class="btn btn-outline-dark">
+            <a href="/user/my_bookings.php" class="btn btn-outline-dark">
                 <i class="fas fa-arrow-left"></i> Back to My Bookings
             </a>
             <button onclick="window.print()" class="btn btn-primary">

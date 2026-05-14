@@ -9,7 +9,7 @@ include('../includes/header.php');
             <p>Secure your spot at The Sprout, our signature dining experience.</p>
         </div>
 
-        <form action="/bookings/booking_process.php" method="POST" class="table-booking-form">
+        <form action="../bookings/bookings_process.php" method="POST" class="table-booking-form">
             <input type="hidden" name="action" value="book_table">
             
             <!-- Step 1: Dining Requirements -->
@@ -51,7 +51,7 @@ include('../includes/header.php');
     </div>
 </div>
 
-<script src="/assets/js/ajax.js"></script>
+<script src="../assets/js/ajax.js"></script>
 <script>
     // Frontend JS logic for dynamically loading time slots and enabling the button
     document.addEventListener('DOMContentLoaded', () => {

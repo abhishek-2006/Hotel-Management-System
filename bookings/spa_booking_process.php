@@ -13,7 +13,7 @@ $spa_date = $_POST['spa_date'];
 $spa_time = $_POST['spa_time'];
 
 // Validate date inside stay range
-$check = $dbh->prepare("
+$check = $conn->prepare("
     SELECT * FROM bookings 
     WHERE booking_id = :bid 
       AND user_id = :uid
@@ -21,12 +21,14 @@ $check = $dbh->prepare("
 ");
 $check->execute(['bid' => $booking_id, 'uid' => $user_id, 'd' => $spa_date]);
 
-if ($check->rowCount() == 0) {
-    die("<h3>❌ Invalid date — not within your stay!</h3>");
+$bookingMatch = $check->fetch(PDO::FETCH_ASSOC);
+
+if ($bookingMatch === false) {
+    die("<h3>Invalid date — not within your stay!</h3>");
 }
 
 // Insert spa booking
-$stmt = $dbh->prepare("
+$stmt = $conn->prepare("
     INSERT INTO spa_booking (user_id, booking_id, spa_service_id, spa_date, spa_time, status)
     VALUES (:uid, :bid, :sid, :d, :t, 'Pending')
 ");

@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once('../includes/config.php');
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ' . '/auth/login.php');
+    header('Location: ../auth/login.php');
     exit;
 }
 
@@ -294,7 +294,7 @@ include('../includes/header.php');
                             <i class="fas fa-calendar-day"></i>
                             <h3>No <?= $category ?> reservations</h3>
                             <p class="mb-4">It looks like you haven't made any <?= $category ?> plans yet.</p>
-                            <a href="/rooms.php" class="btn btn-primary">Discover Rooms</a>
+                            <a href="../rooms.php" class="btn btn-primary">Discover Rooms</a>
                         </div>
                     <?php else: ?>
                         <div class="bookings-grid">
@@ -382,7 +382,7 @@ function switchHubTab(category) {
 
 function handleCancel(id) {
     if(confirm('Are you sure you wish to cancel this reservation? This cannot be undone.')) {
-        window.location.href = '../bookings/booking_process.php?action=cancel&id=' + id;
+        window.location.href = '../bookings/bookings_process.php?action=cancel&id=' + id;
     }
 }
 </script>

@@ -10,23 +10,23 @@
             <div class="footer-column footer-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="/index.php">Home</a></li>
-                    <li><a href="/rooms.php">Rooms</a></li>
-                    <li><a href="/menu.php">Menu</a></li>
-                    <li><a href="/dining.php">Dining</a></li>
-                    <li><a href="/spa.php">Spa</a></li>
-                    <li><a href="/about.php">About Us</a></li>
-                    <li><a href="/contact.php">Contact Us</a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../rooms.php">Rooms</a></li>
+                    <li><a href="../menu.php">Menu</a></li>
+                    <li><a href="../dining.php">Dining</a></li>
+                    <li><a href="../spa.php">Spa</a></li>
+                    <li><a href="../about.php">About Us</a></li>
+                    <li><a href="../contact.php">Contact Us</a></li>
                 </ul>
             </div>
 
             <div class="footer-column footer-links">
                 <h3>Book Now</h3>
                 <ul>
-                    <li><a href="/rooms.php">View Rooms</a></li>
-                    <li><a href="/user/book_room.php">Book a Room</a></li>
-                    <li><a href="/user/book_table.php">Reserve a Table</a></li>
-                    <li><a href="/user/spa_booking.php">Spa Services</a></li>
+                    <li><a href="../rooms.php">View Rooms</a></li>
+                    <li><a href="../user/book_room.php">Book a Room</a></li>
+                    <li><a href="../user/book_table.php">Reserve a Table</a></li>
+                    <li><a href="../user/spa_booking.php">Spa Services</a></li>
                 </ul>
             </div>
 

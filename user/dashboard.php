@@ -98,7 +98,7 @@ include("../includes/header.php");
                     <p>Rejuvenate with curated treatments.</p>
                     <span class="action-link">Explore Spa <i class="fas fa-arrow-right"></i></span>
                 </a>
-                <a href="../user/profile.php" class="action-card card">
+                <a href="profile.php" class="action-card card">
                     <div class="card-icon"><i class="fas fa-user-shield"></i></div>
                     <h3>Concierge Profile</h3>
                     <p>Manage your preferences & identity.</p>
@@ -178,7 +178,7 @@ include("../includes/header.php");
                     </div>
                 </section>
 
-                <!-- History Section (Redesigned per Image 2) -->
+                <!-- History Section  -->
                 <section class="history-section mt-5">
                     <h2 class="section-title">Recent Booking History</h2>
                     

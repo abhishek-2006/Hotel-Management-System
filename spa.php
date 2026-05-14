@@ -1,8 +1,8 @@
 <?php 
-include($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'); 
+include('includes/header.php'); 
 ?>
 
-<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 
 <section class="spa-hero">
     <div class="spa-overlay"></div>

@@ -19,7 +19,7 @@ if(mysqli_num_rows($query) > 0){
         $html .= ' 
         <div class="table-card card ' . (!$isAvailable ? 'card-reserved' : '') . '">
             <div class="table-image-wrapper">
-                <img src="assets/images/tables/' . htmlspecialchars($row['image']) . '" 
+                <img src="../images/tables/' . htmlspecialchars($row['image']) . '" 
                     alt="Table for ' . htmlspecialchars($row['capacity']) . ' Image" 
                     class="table-image">
                 <span class="table-status table-status-' . ($isAvailable ? 'available' : 'reserved') . '">

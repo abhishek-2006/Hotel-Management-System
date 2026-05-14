@@ -45,7 +45,7 @@ if($query && mysqli_num_rows($query) > 0){
         $html .= '<div class="room-card card">'; // No card-booked class needed as they are filtered out
         $html .= '  <div class="room-image-wrapper">';
         
-        $html .= '    <img src="' . '/assets/images/rooms/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['room_type']) . ' Room Image" class="room-image">';
+        $html .= '    <img src="../images/rooms/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['room_type']) . ' Room Image" class="room-image">';
         
         $html .= '    <span class="room-status room-status-available">';
         $html .= '      ' . $availabilityText;
@@ -62,7 +62,7 @@ if($query && mysqli_num_rows($query) > 0){
         $html .= '          <strong>₹' . number_format($row['price_per_night']) . '</strong> / night';
         $html .= '      </p>';
         
-        $booking_url = "/user/book_room.php?room_id={$row['room_id']}&check_in={$check_in}&check_out={$check_out}&guests={$guests}";
+        $booking_url = "../../user/book_room.php?room_id={$row['room_id']}&check_in={$check_in}&check_out={$check_out}&guests={$guests}";
         
         $html .= '      <a href="' . $booking_url . '" class="btn btn-action btn-full-width">';
         $html .= '          Book This Room';
@@ -75,5 +75,4 @@ if($query && mysqli_num_rows($query) > 0){
 // Output the generated HTML to the AJAX request
 echo $html;
 
-// Stop execution here
 exit;

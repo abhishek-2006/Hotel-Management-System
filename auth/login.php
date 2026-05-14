@@ -3,7 +3,7 @@ require_once('../includes/config.php');
 
 // Check if user is already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: /user/dashboard.php");
+    header("Location: ../user/dashboard.php");
     exit;
 }
 
@@ -21,7 +21,7 @@ if (isset($_SESSION['error_message'])) {
     <title>Login | The Citadel Retreat</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -229,9 +229,9 @@ if (isset($_SESSION['error_message'])) {
     <div class="auth-card">
         <!-- Logo Section -->
         <div class="logo-container">
-            <a href="/index.php">
-                <img src="/assets/images/logo.png" alt="Citadel Retreat Logo" onerror="this.style.display='none'">
-                <?php if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/assets/images/logo.png')): ?>
+            <a href="../index.php">
+                <img src="../assets/images/logo.png" alt="Citadel Retreat Logo" onerror="this.style.display='none'">
+                <?php if(!file_exists('../assets/images/logo.png')): ?>
                     <h1 style="font-family: 'Playfair Display', serif; color: var(--color-brand); font-size: 1.5rem;">THE CITADEL</h1>
                 <?php endif; ?>
             </a>
@@ -254,7 +254,7 @@ if (isset($_SESSION['error_message'])) {
             </div>
         <?php endif; ?>
 
-        <form action="/bookings/auth_process.php" method="POST">
+        <form action="../bookings/auth_process.php" method="POST">
             <input type="hidden" name="action" value="login">
 
             <div class="form-group">
@@ -279,7 +279,7 @@ if (isset($_SESSION['error_message'])) {
 
         <div class="auth-footer">
             <p>New to The Citadel? <a href="register.php">Create an account</a></p>
-            <a href="/index.php" class="back-home">
+            <a href="../index.php" class="back-home">
                 <i class="fas fa-arrow-left"></i> Back to Homepage
             </a>
         </div>

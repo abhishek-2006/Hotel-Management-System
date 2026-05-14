@@ -15,7 +15,7 @@ include('includes/header.php');
             <h2 class="form-title">Send Us a Message</h2>
             <p>We aim to respond to all inquiries within 24 hours.</p>
             
-            <form action="/bookings/contact_process.php" method="POST" class="contact-form">
+            <form action="bookings/contact_process.php" method="POST" class="contact-form">
                 
                 <div class="form-group">
                     <label for="name">Your Full Name</label>
@@ -72,7 +72,7 @@ include('includes/header.php');
 
             <div class="map-placeholder">
                 <p>Location Map Loading...</p>
-                </div>
+            </div>
         </div>
     </section>
 

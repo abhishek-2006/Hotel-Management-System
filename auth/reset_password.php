@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('../includes/config.php');
 include('../includes/header.php');
 error_reporting(E_ALL);
 
@@ -88,4 +87,4 @@ if (isset($_POST['reset_password'])) {
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Hotel Management system/includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>

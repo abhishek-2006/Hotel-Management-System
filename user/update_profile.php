@@ -1,10 +1,9 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/includes/config.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php');
+include('../includes/header.php');
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error_message'] = "Please log in first.";
-    header("Location: /auth/login.php");
+    header("Location: ../auth/login.php");
     exit;
 }
 
@@ -66,4 +65,4 @@ $stmt->close();
     </form>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
+<?php include("../includes/footer.php"); ?>

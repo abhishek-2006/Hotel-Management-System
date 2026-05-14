@@ -20,6 +20,6 @@ if (ini_get("session.use_cookies")) {
 }
 
 // Redirect to home page after logout
-header("Location: /index.php");
+header("Location: ../index.php");
 exit;
 ?>

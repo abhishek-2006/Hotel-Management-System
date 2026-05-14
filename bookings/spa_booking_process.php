@@ -21,7 +21,7 @@ $check = $conn->prepare("
 ");
 $check->execute(['bid' => $booking_id, 'uid' => $user_id, 'd' => $spa_date]);
 
-$bookingMatch = $check->fetch(PDO::FETCH_ASSOC);
+$bookingMatch = $check->fetch();
 
 if ($bookingMatch === false) {
     die("<h3>Invalid date — not within your stay!</h3>");
